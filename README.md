@@ -1,5 +1,6 @@
 # JOHD Data Analysis: scripts and data
 
+## Project structure
 ```
 johd_crawler
 ├─ README.md
@@ -22,6 +23,19 @@ johd_crawler
    ├─ johd_crawler.py
    └─ merge_johd_dimensions.py
 ```
+
+## pipeline summary
+> NB: The whole pipeline needs to be done in the same day, else you may run into inconsistencies.
+1. Export data from dimensions.ai (for all publications by JOHD), rename the file to `YYYY-MM-DD-dimensions_export.csv` (where YYYY-MM-DD is the date of the export) and put it in the folder `dimensions_exports/`.
+2. Manually add the latest data papers and associated datasets in `manual_inputs/manual-datasets.csv`.
+3. Run `python johd_crawler.py`. This will output `crawler_outputs/YYYY-MM-DD-crawler_data.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
+4. Run `python datasets_crawler.py`. This will output `crawler_outputs/YYYY-MM-DD-datasets-metrics.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
+5. Make a copy of `crawler_outputs/YYYY-MM-DD-datasets-metrics.csv` and put it into `final_outputs/`. Rename it to `crawler_outputs/YYYY-MM-DD-datasets-metrics_manual.csv`.
+6. Manually add the metrics for the datasets which we can't crawl (currently 3: see the list under the section **final_outputs**).
+7. Run `python merge_johd_dimensions.py`. This will output `final_outputs/johd_metrics.csv`.
+8. Congrats! You now have the two final datasets that we need for this month: `johd_metrics.csv` and `YYYY-MM-DD-datasets-metrics_manual.csv`.
+
+
 ## manual_inputs
 Here you manually add and rename two files each month:
 - `YYYY-MM-DD-competitor-manual-export.csv`: export [this](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) spreadsheet (tab: Data JOHD_RDJ).
@@ -65,4 +79,4 @@ Here we put a monthly export from dimensions.ai. Note: currently using an instit
     - views (`float <number of views>`)
     - tweets (`float <number of tweets>`)
     - data_collection_date: (`str <today>`)
-- `merge_johd_dimensions.py`: 
+- `merge_johd_dimensions.py`: merges `YYYY-MM-DD-crawler_data.csv` and `YYYY-MM-DD-dimensions_export.csv` and outputs `YYYY-MM-DD-johd_metrics.csv`.
