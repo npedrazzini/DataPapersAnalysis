@@ -2,12 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 from datetime import datetime
+import re
 
 todaysdate = str(datetime.today().strftime('%Y-%m-%d'))
 
 datasets = './manual_inputs/manual-datasets.csv'
 
-with open(datasets) as incsv, open('./final_outputs/{}-datasets-metrics.csv'.format(todaysdate),'w') as csv_crawler:
+with open(datasets) as incsv, open('./crawler_outputs/{}-datasets-metrics.csv'.format(todaysdate),'w') as csv_crawler:
     datasetlist = csv.DictReader(incsv,delimiter=',')
     csv_output = csv.writer(csv_crawler)
     csv_output.writerow(['DOI','repo-name','repourl','views','unique-views','downloads','unique-downloads'])
@@ -24,15 +25,19 @@ with open(datasets) as incsv, open('./final_outputs/{}-datasets-metrics.csv'.for
             for result in results:
                 if result.text.strip() == 'Views':
                     totalviews = (result.parent.find_all('td'))[1].text
+                    totalviews = ''.join(totalviews.split(','))
                     print(totalviews)
                 elif result.text.strip() == 'Downloads':
                     totaldownloads = (result.parent.find_all('td'))[1].text
+                    totaldownloads = ''.join(totaldownloads.split(','))
                     print(totaldownloads)
                 elif result.text.strip() == 'Unique views':
                     uniqueviews = (result.parent.find_all('td'))[1].text
+                    uniqueviews = ''.join(uniqueviews.split(','))
                     print(uniqueviews)
                 elif result.text.strip() == 'Unique downloads':
                     uniquedown = (result.parent.find_all('td'))[1].text
+                    uniquedown = ''.join(uniquedown.split(','))
                     print(uniquedown)
             csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
         elif reponame == 'Figshare':
@@ -41,11 +46,13 @@ with open(datasets) as incsv, open('./final_outputs/{}-datasets-metrics.csv'.for
             viewspage = requests.get('https://stats.figshare.com/total/views/article/{}'.format(repoid))
             soup = BeautifulSoup(viewspage.content, "html.parser")
             totalviews = soup.text.split(':')[1].strip().split('}')[0]
+            totalviews = ''.join(totalviews.split(','))
             print(totalviews)
             uniqueviews = 'NA'
             downpage = requests.get('https://stats.figshare.com/total/downloads/article/{}'.format(repoid))
             soup = BeautifulSoup(downpage.content, "html.parser")
             totaldownloads = soup.text.split(':')[1].strip().split('}')[0]
+            totaldownloads = ''.join(totaldownloads.split(','))
             print(totaldownloads)
             uniquedown = 'NA'
             csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
@@ -56,11 +63,13 @@ with open(datasets) as incsv, open('./final_outputs/{}-datasets-metrics.csv'.for
             viewspage = requests.get('https://stats.figshare.com/{}/total/views/article/{}'.format(instit,repoid))
             soup = BeautifulSoup(viewspage.content, "html.parser")
             totalviews = soup.text.split(':')[1].strip().split('}')[0]
+            totalviews = ''.join(totalviews.split(','))
             print(totalviews)
             uniqueviews = 'NA'
             downpage = requests.get('https://stats.figshare.com/{}/total/downloads/article/{}'.format(instit,repoid))
             soup = BeautifulSoup(downpage.content, "html.parser")
             totaldownloads = soup.text.split(':')[1].strip().split('}')[0]
+            totaldownloads = ''.join(totaldownloads.split(','))
             print(totaldownloads)
             uniquedown = 'NA'
             csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
@@ -71,6 +80,7 @@ with open(datasets) as incsv, open('./final_outputs/{}-datasets-metrics.csv'.for
             for h3 in totalvisits:
                 if h3.text == 'Total Visits':
                     totalviews = h3.parent.find_all('td')[1].text
+                    totalviews = ''.join(totalviews.split(','))
                     print(totalviews)
             uniqueviews = 'NA'
             totaldownloads = 'NA'
@@ -79,13 +89,26 @@ with open(datasets) as incsv, open('./final_outputs/{}-datasets-metrics.csv'.for
         elif reponame == 'Dataverse':
             page = requests.get(repourl)
             soup = BeautifulSoup(page.content, "html.parser")
-            totalvisits = soup.find_all('div', id="metrics-heading")
-            for div in totalvisits:
-                if div.text.strip() == 'Dataset Metrics':
-                    totalviews = div.parent.find('div', {'class': 'metrics-count-block'}).text.strip().split(' ')[0]
-                    print(totalviews)
+            totalvisits = soup.find('div', id="metrics-body").text.strip()
+            totalvisits = re.sub('\n', ' ', totalvisits)
+            totalvisits = re.sub(' +', ' ', totalvisits)
+            totalvisits = totalvisits.split(' ')
+            print('Total visits: ' + str(totalvisits))
+            if 'Views' in totalvisits:
+                ind = totalvisits.index('Views')
+                totalviews = totalvisits[ind-1]
+                totalviews = ''.join(totalviews.split(','))
+            else:
+                totalviews = 'NA'
+            print(totalviews)
+            if 'Downloads' in totalvisits:
+                ind = totalvisits.index('Downloads')
+                totaldownloads = totalvisits[ind-1]
+                totaldownloads = ''.join(totaldownloads.split(','))
+            else:
+                totaldownloads = 'NA'
+            print(totaldownloads)
             uniqueviews = 'NA'
-            totaldownloads = 'NA'
             uniquedown = 'NA'
             csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
         else:

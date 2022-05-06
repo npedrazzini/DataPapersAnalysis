@@ -1,8 +1,8 @@
 import pandas as pd
 from datetime import datetime
 
-#date = str(datetime.today().strftime('%Y-%m-%d'))
-date = '2022-04-04'
+date = str(datetime.today().strftime('%Y-%m-%d'))
+#date = '2022-04-04'
 # Assumes that all file names start with timestamp in the format YYYY-MM-DD (today's date)
 johdin = pd.read_csv('./crawler_outputs/{}-crawler_data.csv'.format(date))
 dimensionscols = ["DOI","Times cited","Recent citations","FOR (ANZSRC) Categories","Altmetric"]
