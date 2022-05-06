@@ -35,8 +35,9 @@ johd_crawler
 7. Run `python merge_johd_dimensions.py`. This will output `final_outputs/johd_metrics.csv`.
 8. Congrats! You now have the two final datasets that we need for this month: `johd_metrics.csv` and `YYYY-MM-DD-datasets-metrics_manual.csv`.
 
+## Details about folders
 
-## manual_inputs
+### manual_inputs
 Here you manually add and rename two files each month:
 - `YYYY-MM-DD-competitor-manual-export.csv`: export [this](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) spreadsheet (tab: Data JOHD_RDJ).
 - `YYYY-MM-DD-export-manual-dataset.csv`: export [this](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) spreadsheet (tab: JOHD_Dataset).
@@ -53,20 +54,20 @@ Based on `YYYY-MM-DD-export-manual-dataset.csv` update the file `manual-datasets
 
 > **Figshare-Inst** (institutional Figshare, e.g. [this one](https://kilthub.cmu.edu/articles/dataset/DH_Conference_Index_Data_-_9_22_2020/12987959/1)) needs to be distinguished from Figshare, as it has a slightly different HTML structure than the generic Figshare one.
 
-## crawler_outputs
+### crawler_outputs
 - `YYYY-MM-DD-dataset-metrics.csv`: dataset metrics crawled from the repos based on the list in `manual-datasets.csv`. The script used to extract these (`datasets_crawler.py`) has bespoke methods for each repository, where possible. Note: data on OSF is not usable as it's no comparable to the others (it only provides views for the last 2 months and there's no easy way to get that info automatically anyway). 'Other' means that that repo either does not provide usage statistics or these need to be collected manually (see instructions in `final_outputs`).
 
-## final_outputs
+### final_outputs
 - `YYYY-MM-DD-johd-metrics.csv`: the very final dataset, a merge of all dataset metrics, Dimension exports, and manually collected dataset if relevant. This is the dataset that will be used for the analysis.
 - `YYYY-MM-DD-dataset-metrics_manual.csv`: copy of `YYYY-MM-DD-dataset-metrics.csv` (in `crawler_outputs`), with added manual usage statistics for repository: 'Other', where available. These are the following (check the respective repository in `manual-datasets.csv` and enter the statistics manually in `YYYY-MM-DD-dataset-metrics_manual.csv`):
     - 10.5334/johd.4
     - 10.5334/johd.15
     - 10.5334/johd.33
 
-## dimensions_exports
+### dimensions_exports
 Here we put a monthly export from dimensions.ai. Note: currently using an institutional account, since that provides more detailed info than the free version. Rename file everytime you add an export in the format: `YYYY-MM-DD-dimensions_export.csv`.
 
-## scripts
+### scripts
 - `datasets_crawler.py`: takes `manual_inputs/manual-datasets.csv` as input, outputs `YYYY-MM-DD-dataset-metrics.csv` into `crawler_outputs/`.
 - `find_repo_location.py`: attempts to extract repo name from the articles. Because of structure inconsistencies in the data papers, the script does not always manage to extract the info. Don't use.
 - `johd_crawler.py`: does not take any input. It simply crawls JOHD's website and loops over every article extracting the following info:
