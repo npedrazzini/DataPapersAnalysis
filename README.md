@@ -92,9 +92,9 @@ Here we put a monthly export from dimensions.ai. Note: currently using an instit
 - `merge_johd_dimensions.py`: merges `YYYY-MM-DD-crawler_data.csv` and `YYYY-MM-DD-dimensions_export.csv` and outputs `YYYY-MM-DD-johd_metrics.csv`.
 
 # NOTES
-- Dative alternation revisited. DOI not retrievable on Dimensions for individual chapter (only for whole volume)
+In `rdj_manual-datasets.csv`:
+- For the title _Dative alternation revisited_ the DOI is not retrievable on Dimensions for the individual chapter (only for whole volume).
 - 10.6084/m9.figshare.14743044.v2 also not retrievable on Dimensions
-- CEUR proceedings publications are also not retrievable on Dimensions
+- CEUR proceedings publications not retrievable on Dimensions
 
 # TODO
-- Describe new files (rdj_manual-datasets.csv, research_data_papers-links.csv) and folders (research_papers/)
