@@ -1,7 +1,7 @@
 DOI,repo-name,repourl,views,unique-views,downloads,unique-downloads
 10.5334/johd.1,Zenodo,https://zenodo.org/record/31026#.YNCwuUwo9EY,2690,2526,964,765
 10.5334/johd.2,Figshare,http://dx.doi.org/10.6084/m9.figshare.1305596,5718,NA,862,NA
-10.5334/johd.4,Other,http://hdl.handle.net/1969.1/156315,1002,NA,821,NA
+10.5334/johd.4,Other,http://hdl.handle.net/1969.1/156315,819,NA,NA,NA
 10.5334/johd.6,Figshare,https://dx.doi.org/10.6084/m9.figshare.3493103,724,NA,4909,NA
 10.5334/johd.7,Other,https://earlyracefilm.github.io/database/,NA,NA,NA,NA
 10.5334/johd.8,Zenodo,https://doi.org/10.5281/zenodo.200399,246,225,15,14
@@ -45,7 +45,7 @@ DOI,repo-name,repourl,views,unique-views,downloads,unique-downloads
 10.5334/johd.57,Dataverse,https://doi.org/10.7910/DVN/BYPOOR,NA,NA,134,NA
 10.5334/johd.65,Zenodo,https://zenodo.org/record/5602978#.YkWwoihBwdV,155,106,120,75
 10.5334/johd.56,Other,https://bl.iro.bl.uk/concern/datasets/f3686eb9-4227-45cb-9acb-0453d35e6a03,NA,NA,NA,NA
- 10.5334/johd.68,Dataverse,https://doi.org/10.7910/DVN/PAGGQS,NA,NA,14,NA
+10.5334/johd.68,Dataverse,https://doi.org/10.7910/DVN/PAGGQS,NA,NA,14,NA
 10.5334/johd.67,Other,https://www.loc.gov/search/?fa=contributor:by+the+people+%28program%29,NA,NA,NA,NA
 10.5334/johd.71,Dataverse,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HAKKUA,NA,NA,102,NA
 10.5334/johd.74,Zenodo,https://zenodo.org/record/6220409#.YkWz-ihBwdU,181,134,72,30
