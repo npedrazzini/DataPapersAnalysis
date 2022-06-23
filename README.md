@@ -90,6 +90,8 @@ Here we put a monthly export from dimensions.ai. Note: currently using an instit
     - tweets (`float <number of tweets>`)
     - data_collection_date: (`str <today>`)
 - `merge_johd_dimensions.py`: merges `YYYY-MM-DD-crawler_data.csv` and `YYYY-MM-DD-dimensions_export.csv` and outputs `YYYY-MM-DD-johd_metrics.csv`.
+- `zenodo.ipynb`: builds a dataset of datasets published on Zenodo in the humanities and social sciences between 29 September 2015 (the date of the first JOHD article) and 4 June 2022 by communicating with the Zenodo REST API, and extracting the datastes's doi, html, publication_date, downloads and views; the output is a dataframe save in .json and .csv format. (Please note that you need your own Zenodo access token to reproduce these results.)
+- `zenodoplots.ipynb`: takes `zenodo_humss_datasets.csv` as input, removes outliers (more than 10,000 or less than 1 downloads/views), normalises downloads and views by dividing with the dataset age (in days), calculates averages for age, then takes time intervals (90 days in our case) to visualise normalised downloads/views on a scatter plot
 
 # NOTES
 In `rdj_manual-datasets.csv`:
