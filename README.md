@@ -169,6 +169,8 @@ Plots overall changes in metrics growth/decrease rates over time for all humanit
 #### `descr_analysis_G.py`
 Plots overall changes in metrics growth/decrease rates over time for all humanities research papers from Dimensions (2015-2022), normalizing by article/dataset age.
 
+#### `johd_rdjhss_graphs_from_CompetitorData`
+Plots differences in research fields between JOHD and RDJHSS, as well as the number of publications for each year. This is based on the data available in the .csv file named RDJ_JOHD_CompetitorData.xlsx - Data_JOHD_RDJ.csv
 
 # NOTES
 - In `datasets_datapapers-links-rdj.csv`:
