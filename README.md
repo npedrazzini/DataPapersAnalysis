@@ -74,7 +74,7 @@ ROOT
 - `YYYY-MM-DD-final-research_papers-rdj`
 
 ## Details about folders
-### `curated_inputs`
+### Curated inputs
 This folder contains all manually-curated data papers-datasets and data papers-research papers linking for both JOHD and RDJ.
 
 The data papers-datasets linking files contain the following variables:
@@ -87,12 +87,12 @@ The data papers-research papers linking files contain the following variables:
 - `DOI`: DOI of the data paper
 - `DOI_research_paper`: DOI of the research paper
 
-### dimensions_exports
+### Dimensions exports
 This folder contains two subfolders:
 - `johd_rdj`: monthly export from Dimensions for all JOHD + RDJ publications
 - `research_papers`: monthly export from Dimensions for research papers linked with JOHD and RDJ data papers (one exports each, based on the linking files under `curated_inputs`).
 
-### outputs
+### Outputs
 #### `analysis_outputs`
 This is where the analysis scripts will save all outputs.
 
