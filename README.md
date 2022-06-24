@@ -78,14 +78,14 @@ ROOT
 This folder contains all manually-curated data papers-datasets and data papers-research papers linking for both JOHD and RDJ.
 
 The data papers-datasets linking files contain the following variables:
-    - `DOI`: DOI of the data paper
-    - `repourl`: URL of the repository of the associated dataset
-    - `reponame`: Name of repository. Note that this variable is used as input to the dataset scraper (each repository has its own scraping method)
-    - `pub-date`: publication date of dataset
+- `DOI`: DOI of the data paper
+- `repourl`: URL of the repository of the associated dataset
+- `reponame`: Name of repository. Note that this variable is used as input to the dataset scraper (each repository has its own scraping method)
+- `pub-date`: publication date of dataset
 
 The data papers-research papers linking files contain the following variables:
-    - `DOI`: DOI of the data paper
-    - `DOI_research_paper`: DOI of the research paper
+- `DOI`: DOI of the data paper
+- `DOI_research_paper`: DOI of the research paper
 
 ### dimensions_exports
 This folder contains two subfolders:
@@ -99,23 +99,23 @@ This is where the analysis scripts will save all outputs.
 #### `final_outputs`
 This is where all final outputs are saved. These are also the inputs for the analysis scripts.
 Three subfolders:
-    - `johd`
-        - `YYYY-MM-DD-final-datapapers-johd.csv`: merged dataset containing both scraped metrics on data papers and relevant Dimensions variables on them.
-        - `YYYY-MM-DD-final-datasets-johd.csv`: this file results from merging the data paper-dataset linking file with the metrics on datasets scraped from the respective repos.
-    - `rdj`
-        -`YYYY-MM-DD-final-datapapers-rdj.csv`: merged dataset containing both scraped metrics on data papers and relevant Dimensions variables on them.
-    - `research_papers`
-        -`YYYY-MM-DD-final-research_papers-johd.csv`: subset of the Dimensions export for research papers associated with JOHD data papers, containing relevant Dimensions variables and with added column for DOI of related data paper.
-        -`YYYY-MM-DD-final-research_papers-rdj.csv`: subset of the Dimensions export for research papers associated with RDJ data papers, containing relevant Dimensions variables and with added column for DOI of related data paper.
+- `johd`
+    - `YYYY-MM-DD-final-datapapers-johd.csv`: merged dataset containing both scraped metrics on data papers and relevant Dimensions variables on them.
+    - `YYYY-MM-DD-final-datasets-johd.csv`: this file results from merging the data paper-dataset linking file with the metrics on datasets scraped from the respective repos.
+- `rdj`
+    -`YYYY-MM-DD-final-datapapers-rdj.csv`: merged dataset containing both scraped metrics on data papers and relevant Dimensions variables on them.
+- `research_papers`
+    -`YYYY-MM-DD-final-research_papers-johd.csv`: subset of the Dimensions export for research papers associated with JOHD data papers, containing relevant Dimensions variables and with added column for DOI of related data paper.
+    -`YYYY-MM-DD-final-research_papers-rdj.csv`: subset of the Dimensions export for research papers associated with RDJ data papers, containing relevant Dimensions variables and with added column for DOI of related data paper.
 
 #### `scraper_outputs`
 This is where all the outputs of the scraping scripts are saved.
 Two subfolders:
-    - `johd`:
-        - `YYYY-MM-DD-scraper-datapapers-johd.csv`: datapapers metrics scraped from JOHD's website based on the list of publications in `datasets_datapapers-links-johd.csv`.
-        - `YYYY-MM-DD-scraper-datasets-johd.csv`: dataset metrics scraped from the repos based on the list in `datasets_datapapers-links-johd.csv`.
-    - `rdj`:
-        - `YYYY-MM-DD-scraper-datapapers-rdj.csv`: datapapers metrics (downloads, views) scraped from RDJ's website, based on the list of published articles in `datasets_datapapers-links-rdj.csv`
+- `johd`:
+    - `YYYY-MM-DD-scraper-datapapers-johd.csv`: datapapers metrics scraped from JOHD's website based on the list of publications in `datasets_datapapers-links-johd.csv`.
+    - `YYYY-MM-DD-scraper-datasets-johd.csv`: dataset metrics scraped from the repos based on the list in `datasets_datapapers-links-johd.csv`.
+- `rdj`:
+    - `YYYY-MM-DD-scraper-datapapers-rdj.csv`: datapapers metrics (downloads, views) scraped from RDJ's website, based on the list of published articles in `datasets_datapapers-links-rdj.csv`
 
 ### `zenodo_api`
 - `zenodo.ipynb`: builds a dataset of datasets published on Zenodo in the humanities and social sciences between 29 September 2015 (the date of the first JOHD article) and 4 June 2022 by communicating with the Zenodo REST API, and extracting the datastes's doi, html, publication_date, downloads and views; the output is a dataframe save in .json and .csv format. (Please note that you need your own Zenodo access token to reproduce these results.)
@@ -157,7 +157,6 @@ It outputs the statistics in two separate CSVs:
 Each of the above contains 10 rows, corresponding to 10 different random sampling (each 5000 publications) of the dataset with all Zenodo datasets in the Humanities.
 
 #### `descr_analysis_B-g_h.py`
-
 Plots difference in publication date between data papers and associated research papers, and the difference between data papers and associated datasets (to check which ones are generally published first, or how long before/after the other).
 
 #### `descr_analysis_C-D.py`
