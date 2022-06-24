@@ -158,7 +158,7 @@ It outputs the statistics in two separate CSVs:
 Each of the above contains 10 rows, corresponding to 10 different random sampling (each 5000 publications) of the dataset with all Zenodo datasets in the Humanities.
 
 #### `descr_analysis_A.py`
-Plots differences between JOHD and RDJHSS research fields, and  the number of publications along the years. 
+Plots differences between JOHD and RDJHSS research fields, as well as  the number of publications for each year. 
 
 #### `descr_analysis_B-g_h.py`
 Plots difference in publication date between data papers and associated research papers, and the difference between data papers and associated datasets (to check which ones are generally published first, or how long before/after the other).
@@ -172,8 +172,6 @@ Plots overall changes in metrics growth/decrease rates over time for all humanit
 #### `descr_analysis_G.py`
 Plots overall changes in metrics growth/decrease rates over time for all humanities research papers from Dimensions (2015-2022), normalizing by article/dataset age.
 
-#### `johd_rdjhss_graphs_from_CompetitorData`
-Plots differences in research fields between JOHD and RDJHSS, as well as the number of publications for each year. This is based on the data available in the .csv file named RDJ_JOHD_CompetitorData.xlsx - Data_JOHD_RDJ.csv
 
 # NOTES
 - In `datasets_datapapers-links-rdj.csv`:
