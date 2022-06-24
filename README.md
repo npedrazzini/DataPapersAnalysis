@@ -158,7 +158,7 @@ It outputs the statistics in two separate CSVs:
 Each of the above contains 10 rows, corresponding to 10 different random sampling (each 5000 publications) of the dataset with all Zenodo datasets in the Humanities.
 
 #### `descr_analysis_A.py`
-[ELEONORA TO COMPLETE]
+Plots differences between JOHD and RDJHSS research fields, and  the number of publications along the years. 
 
 #### `descr_analysis_B-g_h.py`
 Plots difference in publication date between data papers and associated research papers, and the difference between data papers and associated datasets (to check which ones are generally published first, or how long before/after the other).
