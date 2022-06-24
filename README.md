@@ -2,101 +2,182 @@
 
 ## Project structure
 ```
-johd_crawler
+ROOT
 ├─ README.md
-├─ crawler_outputs
-│  ├─ 2022-04-04-datasets-metrics.csv
-│  └─ 2022-04-04-crawler_data.csv
+├─ curated_inputs
+│  ├─ datasets_datapapers-links-johd.csv
+│  ├─ datasets_datapapers-links-rdj.csv
+│  ├─ research_datapapers-links-johd.csv
+│  └─ research_datapapers-links-rdj.csv
 ├─ dimensions_exports
-│  ├─ research_papers
-│  │  └─ 2022-06-04-dimensions_export-research_papers.csv
-│  └─ 2022-04-04-dimensions_export.csv
-├─ final_outputs
-│  ├─ research_papers
-│  │  └─ 2022-06-04-research_papers-merged.csv
-│  ├─ 2022-04-04-johd_metrics.csv
-│  └─ 2022-04-04-datasets-metrics_manual.csv
-├─ manual_inputs
-│  ├─ 2022-05-04-competitor-manual-export.csv
-│  ├─ 2022-05-04-export-manual-dataset.csv
-│  ├─ johd_manual-datasets.csv
-│  ├─ rdj_manual-datasets.csv
-│  └─ research_data_papers-links.csv
-└─ scripts
-   ├─ analysis/
-   ├─ datasets_crawler.py
-   ├─ find_repo_location.py
-   ├─ johd_crawler.py
-   └─ merge_johd_dimensions.py
+│  ├─ johd_rdj
+│  └─ research_papers
+├─ outputs
+│  ├─ analysis_outputs
+│  ├─ final_outputs
+│  │  ├─ johd
+│  │  ├─ rdj
+│  │  └─ research_papers
+│  └─ scraper_outputs
+│     ├─ johd
+│     └─ rdj
+├─ requirements.txt
+├─ scripts
+│  ├─ analysis
+│  │  ├─ corr_analysis_A.py
+│  │  ├─ corr_analysis_B.py
+│  │  ├─ corr_analysis_C.py
+│  │  ├─ descr_analysis_B-g_h.py
+│  │  ├─ descr_analysis_C-D.py
+│  │  ├─ descr_analysis_F.py
+│  │  └─ descr_analysis_G.py
+│  ├─ postprocess
+│  │  ├─ merge_johd_dimensions.py
+│  │  ├─ merge_rdj_dimensions.py
+│  │  └─ merge_research_papers_dimensions.py
+│  ├─ scraper
+│  │  ├─ datasets_scraper.py
+│  │  ├─ johd_scraper.py
+│  │  └─ rdj_scraper.py
+│  └─ zenodo_api
+│     └─ zenodo.ipynb
+└─ zenodo_dimensions_all_humss
 ```
 
 ## Pipeline summary
 > NB: Every step in the pipeline needs to be done on the same day, else you may run into inconsistencies.
-1. Export data from dimensions.ai (for all publications by JOHD), rename the file to `YYYY-MM-DD-dimensions_export.csv` (where YYYY-MM-DD is the date of the export) and put it in the folder `dimensions_exports/`.
-2. Manually add the latest data papers from the last manual export (check column `Date of collecting metrics`) and associated datasets to `manual_inputs/johd_manual-datasets.csv`.
-3. Run `python johd_crawler.py`. This will output `crawler_outputs/YYYY-MM-DD-crawler_data.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
-4. Run `python datasets_crawler.py`. This will output `crawler_outputs/YYYY-MM-DD-datasets-metrics.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
-5. Make a copy of `crawler_outputs/YYYY-MM-DD-datasets-metrics.csv` and put it into `final_outputs/`. Rename it to `crawler_outputs/YYYY-MM-DD-datasets-metrics_manual.csv`.
-6. Manually add the metrics for the datasets which we can't crawl but can retrieve manually (currently 3: see the list under the section **final_outputs**).
-7. Run `python merge_johd_dimensions.py`. This will output `final_outputs/johd_metrics.csv`.
-8. Congrats! You now have the two final datasets that we need for this month: `johd_metrics.csv` and `YYYY-MM-DD-datasets-metrics_manual.csv`.
-
-## Details about folders
-
-### `manual_inputs`
-Here you manually add and rename two files each month:
-- `YYYY-MM-DD-competitor-manual-export.csv`: export [this](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) spreadsheet (tab: Data JOHD_RDJ).
-- `YYYY-MM-DD-export-manual-dataset.csv`: export [this](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) spreadsheet (tab: JOHD_Dataset).
-
-Based on `YYYY-MM-DD-export-manual-dataset.csv` update the file `johd_manual-datasets.csv` accordingly with the latest publications (no need to check the older ones). Note: the latter distinguishes between the following repos:
-- Zenodo
-- OSF
-- Dataverse
-- DataShare
-- DANS
-- Figshare
-- Figshare-Inst
-- Other
-
-> **Figshare-Inst** (institutional Figshare, e.g. [this one](https://kilthub.cmu.edu/articles/dataset/DH_Conference_Index_Data_-_9_22_2020/12987959/1)) needs to be distinguished from Figshare, as it has a slightly different HTML structure than the generic Figshare one.
-
-- `rdj_manual-datasets.csv`: this is the linking between RDJ's papers and the associated dataset repository. This was collected semi-automatically, then double-checked manually. It needs to be updated as new articles get published.
-- `research_data_papers-links.csv`: this is the linking between JOHD's papers and associated research papers (Marton's work). It can be updated if new links between research papers and data papers are found. Check [here](https://docs.google.com/spreadsheets/d/1e0FiSv6VaOabt5rBFDyytj2A8tDS48ZZ5OLgxJ1dQ5E/edit#gid=0) to see if this df is up to date.
-
-### crawler_outputs
-- `YYYY-MM-DD-dataset-metrics.csv`: dataset metrics crawled from the repos based on the list in `johd_manual-datasets.csv`. The script used to extract these (`datasets_crawler.py`) has bespoke methods for each repository, where possible. Note: data on OSF is not usable as it's no comparable to the others (it only provides views for the last 2 months and there's no easy way to get that info automatically anyway). 'Other' means that that repo either does not provide usage statistics or these need to be collected manually (see instructions in `final_outputs`).
-
-### final_outputs
-- `YYYY-MM-DD-johd-metrics.csv`: the very final dataset, a merge of all dataset metrics, Dimension exports, and manually collected dataset if relevant. This is the dataset that will be used for the analysis.
-- `YYYY-MM-DD-dataset-metrics_manual.csv`: copy of `YYYY-MM-DD-dataset-metrics.csv` (in `crawler_outputs`), with added manual usage statistics for repository: 'Other', where available. These are the following (check the respective repository in `johd_manual-datasets.csv` and enter the statistics manually in `YYYY-MM-DD-dataset-metrics_manual.csv`):
+1. Update the curated inputs in this repository:
+    - `datasets_datapapers-links-johd.csv`: add the latest data papers by JOHD and associated datasets (from [here](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) or manually by checking the website).
+    - `datasets_datapapers-links-rdj.csv`:  add the latest data papers by RDJ and associated datasets (from [here](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) or manually by checking the website).
+    - `research_datapapers-links-johd.csv`: add any missing research paper associated to JOHD data papers (from [here](https://docs.google.com/spreadsheets/d/1e0FiSv6VaOabt5rBFDyytj2A8tDS48ZZ5OLgxJ1dQ5E/edit#gid=0)).
+    - `research_datapapers-links-rdj.csv`: add any missing research paper associated to RDJ data papers (from [here](https://docs.google.com/spreadsheets/d/1e0FiSv6VaOabt5rBFDyytj2A8tDS48ZZ5OLgxJ1dQ5E/edit#gid=0)).
+2. Export the following data from Dimensions:
+    - all publications by JOHD and RDJ (one dataset). Put the export in dimensions_exports/johd_rdj and rename the file to YYYY-MM-DD-dimensions_export.csv (where YYYY-MM-DD is the date of the export).
+    - all DOIs of research papers associated with data papers as listed in `curated_inputs/research_datapapers-links-johd.csv` and `curated_inputs/research_datapapers-links-rdj.csv`.
+3. Run `python scripts/scraper/johd_scraper.py`. This will output `outputs/scraper_outputs/johd/YYYY-MM-DD-scraper-datapapers-johd` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
+4. Run `python scripts/scraper/dataset_scraper.py`. This will output `outputs/scraper_outputs/johd/YYYY-MM-DD-scraper-datasets-johd.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
+4. Run `python scripts/scraper/rdj_scraper.py`. This will output `outputs/scraper_outputs/rdj/YYYY-MM-DD-scraper-datasets-rdj.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
+5. Make a copy of `outputs/scraper_outputs/johd/YYYY-MM-DD-scraper-datasets-johd.csv` and put it into `outputs/final_outputs/johd/`. Rename it to `YYYY-MM-DD-final-datasets-johd.csv`.
+6. Manually add the metrics for the datasets which we can't crawl but can retrieve manually (currently 3):
     - 10.5334/johd.4
     - 10.5334/johd.15
     - 10.5334/johd.33
+7. Run `python scripts/postprocess/merge_johd_dimensions.py`. This will output `outputs/final_outputs/johd/YYYY-MM-DD-final-datapapers-johd.csv`.
+9. Run `python scripts/postprocess/merge_rdj_dimensions.py`. This will output `outputs/final_outputs/research_papers/YYYY-MM-DD-final-datapapers-rdj.csv`.
+8. Run `python scripts/postprocess/merge_research_papers_dimensions.py`. This will output `outputs/final_outputs/research_papers/YYYY-MM-DD-final-research_papers-johd.csv` and `outputs/final_outputs/research_papers/YYYY-MM-DD-final-research_papers-rdj.csv`.
+10. Congrats! You now have the final datasets that you need to run the analyses: 
+- `YYYY-MM-DD-final-datasets-johd.csv`
+- `YYYY-MM-DD-final-datapapers-johd.csv`
+- `YYYY-MM-DD-final-datasets-rdj.csv`
+- `YYYY-MM-DD-final-datapapers-rdj.csv`
+- `YYYY-MM-DD-final-research_papers-johd`
+- `YYYY-MM-DD-final-research_papers-rdj`
+
+## Details about folders
+### `curated_inputs`
+This folder contains all manually-curated data papers-datasets and data papers-research papers linking for both JOHD and RDJ.
+
+The data papers-datasets linking files contain the following variables:
+    - `DOI`: DOI of the data paper
+    - `repourl`: URL of the repository of the associated dataset
+    - `reponame`: Name of repository. Note that this variable is used as input to the dataset scraper (each repository has its own scraping method)
+    - `pub-date`: publication date of dataset
+
+The data papers-research papers linking files contain the following variables:
+    - `DOI`: DOI of the data paper
+    - `DOI_research_paper`: DOI of the research paper
 
 ### dimensions_exports
-Here we put a monthly export from dimensions.ai. Note: currently using an institutional account, since that provides more detailed info than the free version. Rename file everytime you add an export in the format: `YYYY-MM-DD-dimensions_export.csv`.
+This folder contains two subfolders:
+- `johd_rdj`: monthly export from Dimensions for all JOHD + RDJ publications
+- `research_papers`: monthly export from Dimensions for research papers linked with JOHD and RDJ data papers (one exports each, based on the linking files under `curated_inputs`).
 
-### scripts
-- `datasets_crawler.py`: takes `manual_inputs/johd_manual-datasets.csv` as input, outputs `YYYY-MM-DD-dataset-metrics.csv` into `crawler_outputs/`.
-- `find_repo_location.py`: attempts to extract repo name from the articles. Because of structure inconsistencies in the data papers, the script does not always manage to extract the info. Don't use.
-- `johd_crawler.py`: does not take any input. It simply crawls JOHD's website and loops over every article extracting the following info:
-    - DOI (`str <DOI in the format 10.5334/johd.33>`)
-    - article_title (`str <article title>`)
-    - article_type (`str <Data Papers | Research Papers>`)
-    - authors (`str <name1, name2, name3>`)
-    - date (`float <data of publication>`)
-    - downloads (`float <number of downloads>`)
-    - views (`float <number of views>`)
-    - tweets (`float <number of tweets>`)
-    - data_collection_date: (`str <today>`)
-- `merge_johd_dimensions.py`: merges `YYYY-MM-DD-crawler_data.csv` and `YYYY-MM-DD-dimensions_export.csv` and outputs `YYYY-MM-DD-johd_metrics.csv`.
+### outputs
+#### `analysis_outputs`
+This is where the analysis scripts will save all outputs.
+
+#### `final_outputs`
+This is where all final outputs are saved. These are also the inputs for the analysis scripts.
+Three subfolders:
+    - `johd`
+        - `YYYY-MM-DD-final-datapapers-johd.csv`: merged dataset containing both scraped metrics on data papers and relevant Dimensions variables on them.
+        - `YYYY-MM-DD-final-datasets-johd.csv`: this file results from merging the data paper-dataset linking file with the metrics on datasets scraped from the respective repos.
+    - `rdj`
+        -`YYYY-MM-DD-final-datapapers-rdj.csv`: merged dataset containing both scraped metrics on data papers and relevant Dimensions variables on them.
+    - `research_papers`
+        -`YYYY-MM-DD-final-research_papers-johd.csv`: subset of the Dimensions export for research papers associated with JOHD data papers, containing relevant Dimensions variables and with added column for DOI of related data paper.
+        -`YYYY-MM-DD-final-research_papers-rdj.csv`: subset of the Dimensions export for research papers associated with RDJ data papers, containing relevant Dimensions variables and with added column for DOI of related data paper.
+
+#### `scraper_outputs`
+This is where all the outputs of the scraping scripts are saved.
+Two subfolders:
+    - `johd`:
+        - `YYYY-MM-DD-scraper-datapapers-johd.csv`: datapapers metrics scraped from JOHD's website based on the list of publications in `datasets_datapapers-links-johd.csv`.
+        - `YYYY-MM-DD-scraper-datasets-johd.csv`: dataset metrics scraped from the repos based on the list in `datasets_datapapers-links-johd.csv`.
+    - `rdj`:
+        - `YYYY-MM-DD-scraper-datapapers-rdj.csv`: datapapers metrics (downloads, views) scraped from RDJ's website, based on the list of published articles in `datasets_datapapers-links-rdj.csv`
+
+### `zenodo_api`
 - `zenodo.ipynb`: builds a dataset of datasets published on Zenodo in the humanities and social sciences between 29 September 2015 (the date of the first JOHD article) and 4 June 2022 by communicating with the Zenodo REST API, and extracting the datastes's doi, html, publication_date, downloads and views; the output is a dataframe save in .json and .csv format. (Please note that you need your own Zenodo access token to reproduce these results.)
-- `zenodoplots.ipynb`: takes `zenodo_humss_datasets.csv` as input, removes outliers (more than 10,000 or less than 1 downloads/views), normalises downloads and views by dividing with the dataset age (in days), calculates averages for age, then takes time intervals (90 days in our case) to visualise normalised downloads/views on a scatter plot
+
+### `zenodo_dimensions_all_humss`
+Folder containing:
+- `zenodo_humss_datasets.csv` and `zenodo_humss_datasets.json`: files with metrics for all humanities datasets in Zenodo (2015-2022) (CSV and JSON formats contain the same info).
+- `dimensions_humss_research.csv`: file containing metrics from Dimensions for all humanities research papers published 2015-2022.
+
+### Analysis scripts
+#### `corr_analysis_A.py`
+> Change value of variable `dateoflastdf` to date of latest datasets.
+
+Runs correlation analysis between data paper metrics and associated dataset metric. 
+It outputs `YYYY-MM-DD-correlations.csv`, which will contain the following variables:
+- `variable1`: first variable
+- `variable2`: second variable
+- `rho`: Spearman's rank correlation coefficient
+- `p-value`: p-value
+- `Strength of correlation`: 'Strong' (1 > rho >= 0.7 or -1 < rho <= -0.7), 'Moderate' (0.7 > rho >= 0.4 or -0.7 < rho <= -0.4) or 'Weak' (0.4 > rho >= 0.1 or -0.4 < rho <= -0.1)
+- `Significative?`: 'Significative' (p <= 0.05), 'Borderline' (0.05 < p <= 0.07) or 'Non-significative (p > 0.07)
+
+#### `corr_analysis_B.py`
+> Change value of variable `dateoflastdf` to date of latest datasets.
+
+Runs **Mann-Whitney U-test** and **Welch's t-test** between the altmetric/citation counts of all research papers in the Humanities (2015-2022) and the altmetric/citation counts of research papers with associated data paper. It also plots a boxplot comparing the medians.
+It outputs the statistics in two separate CSVs:
+- YYYY-MM-DD-means-altmetric-analysis-B
+- YYYY-MM-DD-means-citations-analysis-B
+Each of the above contains 10 rows, corresponding to 10 different random sampling (each 5000 publications) of the dataset with all research papers in the Humanities.
+
+#### `corr_analysis_C.py`
+> Change value of variable `dateoflastdf` to date of latest datasets.
+
+Runs **Mann-Whitney U-test** and **Welch's t-test** between the downloads/views of all datasets in the Humanities (2015-2022) and the downloads/views of datasets with associated data paper. It also plots a boxplot comparing the medians.
+It outputs the statistics in two separate CSVs:
+- YYYY-MM-DD-means-downloads-analysis-C
+- YYYY-MM-DD-means-views-analysis-C
+Each of the above contains 10 rows, corresponding to 10 different random sampling (each 5000 publications) of the dataset with all Zenodo datasets in the Humanities.
+
+#### `descr_analysis_B-g_h.py`
+
+Plots difference in publication date between data papers and associated research papers, and the difference between data papers and associated datasets (to check which ones are generally published first, or how long before/after the other).
+
+#### `descr_analysis_C-D.py`
+Plots overall changes in metrics growth/decrease rates over time for JOHD/RDJ articles, normalizing by article/dataset age.
+
+#### `descr_analysis_F.py`
+Plots overall changes in metrics growth/decrease rates over time for all humanities datasets in Zenodo (2015-2022), normalizing by dataset age.
+
+#### `descr_analysis_G.py`
+Plots overall changes in metrics growth/decrease rates over time for all humanities research papers from Dimensions (2015-2022), normalizing by article/dataset age.
+
 
 # NOTES
-In `rdj_manual-datasets.csv`:
-- For the title _Dative alternation revisited_ the DOI is not retrievable on Dimensions for the individual chapter (only for whole volume).
-- 10.6084/m9.figshare.14743044.v2 also not retrievable on Dimensions
-- CEUR proceedings publications not retrievable on Dimensions
+- In `datasets_datapapers-links-rdj.csv`:
+    - For the title _Dative alternation revisited_ the DOI is not retrievable on Dimensions for the individual chapter (only for whole volume).
+    - 10.6084/m9.figshare.14743044.v2 also not retrievable on Dimensions
+    - CEUR proceedings publications not retrievable on Dimensions
+- The script used to extract dataset metrics has bespoke methods for each repository, where possible. Note: data on OSF is not usable as it's not comparable to the others (it only provides views for the last 2 months and there's no easy way to get that info automatically anyway). 'Other' means that that repo either does not provide usage statistics or these need to be collected manually (see instructions in Pipeline summary).
+- The dataset scraper will only distinguishes between the following repos: Zenodo, OSF, Dataverse, DataShare, DANS, Figshare, Figshare-Inst, Other
+- **Figshare-Inst** (institutional Figshare, e.g. [this one](https://kilthub.cmu.edu/articles/dataset/DH_Conference_Index_Data_-_9_22_2020/12987959/1)) needs to be distinguished from Figshare, as it has a slightly different HTML structure than the generic Figshare one.
+
 
 # TODO
