@@ -92,6 +92,10 @@ This folder contains two subfolders:
 - `johd_rdj`: monthly export from Dimensions for all JOHD + RDJ publications
 - `research_papers`: monthly export from Dimensions for research papers linked with JOHD and RDJ data papers (one exports each, based on the linking files under `curated_inputs`).
 
+### Manual data
+#### `johd_rdj_manual_data.csv`
+[ELEONORA TO COMPLETE]
+
 ### Outputs
 #### `analysis_outputs`
 This is where the analysis scripts will save all outputs.
@@ -156,6 +160,9 @@ It outputs the statistics in two separate CSVs:
 - YYYY-MM-DD-means-downloads-analysis-C
 - YYYY-MM-DD-means-views-analysis-C
 Each of the above contains 10 rows, corresponding to 10 different random sampling (each 5000 publications) of the dataset with all Zenodo datasets in the Humanities.
+
+#### `descr_analysis_A.py`
+[ELEONORA TO COMPLETE]
 
 #### `descr_analysis_B-g_h.py`
 Plots difference in publication date between data papers and associated research papers, and the difference between data papers and associated datasets (to check which ones are generally published first, or how long before/after the other).
