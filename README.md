@@ -117,10 +117,11 @@ Two subfolders:
 - `rdj`:
     - `YYYY-MM-DD-scraper-datapapers-rdj.csv`: datapapers metrics (downloads, views) scraped from RDJ's website, based on the list of published articles in `datasets_datapapers-links-rdj.csv`
 
-### `zenodo_api`
+### zenodo_api
 - `zenodo.ipynb`: builds a dataset of datasets published on Zenodo in the humanities and social sciences between 29 September 2015 (the date of the first JOHD article) and 4 June 2022 by communicating with the Zenodo REST API, and extracting the datastes's doi, html, publication_date, downloads and views; the output is a dataframe save in .json and .csv format. (Please note that you need your own Zenodo access token to reproduce these results.)
 
-### `zenodo_dimensions_all_humss`
+### zenodo_dimensions_all_humss
+> Not included in GitHub repo because of LFS limit
 Folder containing:
 - `zenodo_humss_datasets.csv` and `zenodo_humss_datasets.json`: files with metrics for all humanities datasets in Zenodo (2015-2022) (CSV and JSON formats contain the same info).
 - `dimensions_humss_research.csv`: file containing metrics from Dimensions for all humanities research papers published 2015-2022.
