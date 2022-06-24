@@ -92,10 +92,6 @@ This folder contains two subfolders:
 - `johd_rdj`: monthly export from Dimensions for all JOHD + RDJ publications
 - `research_papers`: monthly export from Dimensions for research papers linked with JOHD and RDJ data papers (one exports each, based on the linking files under `curated_inputs`).
 
-### Manual data
-#### `johd_rdj_manual_data.csv`
-[ELEONORA TO COMPLETE]
-
 ### Outputs
 #### `analysis_outputs`
 This is where the analysis scripts will save all outputs.
