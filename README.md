@@ -92,6 +92,20 @@ This folder contains two subfolders:
 - `johd_rdj`: monthly export from Dimensions for all JOHD + RDJ publications
 - `research_papers`: monthly export from Dimensions for research papers linked with JOHD and RDJ data papers (one exports each, based on the linking files under `curated_inputs`).
 
+### Manual data
+#### `johd_rdj_manual_data.csv`
+This file contains collected data about JOHD and RDJHSS publications until 4 June 2022. The columns are the following:
+- 'type': type of publication (article)
+- 'doi': DOI of the paper
+- 'journal/repository': the name of the journal
+- 'Year': year of publication of the paper
+- 'title': title of the publication
+- 'paper type': type of paper (data paper or research paper)
+- 'field': research fields and their classification with MeSH
+- 'keywords': keywords of the publications
+- 'special collection or general issue'
+- 'publication date'
+- 'language'
 ### Outputs
 #### `analysis_outputs`
 This is where the analysis scripts will save all outputs.
