@@ -186,6 +186,45 @@ Plots overall changes in metrics growth/decrease rates over time for all humanit
 #### `descr_analysis_G.py`
 Plots overall changes in metrics growth/decrease rates over time for all humanities research papers from Dimensions (2015-2022), normalizing by article/dataset age.
 
+### Twitter analysis
+Analysis of the impact of Twitter on the visibility of a paper. In the specific this folder contains data and codes for the analysis of the metrics associated with papers that were tweeted with specific hashtags on JOHD's Twitter account. 
+
+#### `johd_tweets.csv`
+
+Manually donwloaded from Twitter Analytics, this file contains all the tweets posted by JOHD. It contains, among others:
+- the id for each tweet
+- a permalink to the tweet
+- the text of the tweet
+- the date of the tweet
+- the engagement rate associated with each tweet
+
+#### `metrics_by_hashtag`
+From the file `final_outputs` > `YYYY-MM-DD-final-datapapers-johd.csv`, we divided the papers (and their metrics) into different lists, depending on their association with specific hashtags used by JOHD on Twitter. The two hashtags selected for the analysis were #showmeyourdata and #johdpapers.
+- `johd_not_show.csv`: papers that did not appear with the hashtag #showmeyourdata
+- `johd_not_tweeted`: papers that did not appear with the hashtag #johdpapers
+- `johd_show.csv`: papers that appeared with the hashtag #showmeyourdata
+- `johd_tweeted.csv`: papers that appeared with the hashtag #johdpapers
+
+#### `tweets_by_hashtag`
+This folder contains the lists of JOHD's tweets divided by hashtag. The files `#johdpapers.csv` and `#showmeyourdata.csv` were used to manually collect the list of papers that appeared with these two hashtags.
+- `#johdagenda.csv`: tweets containing the hashtag #johdagenda
+- `#johdnews.csv`: tweets containing the hashtag #johdnews
+- `#johdpapers.csv`: tweets containing the hashtag #johdpapers
+- `#johdsuggestions.csv`: tweets containing the hashtag #johdsuggestions
+- `#showmeyourdata.csv`: tweets containing the hashtag #showmeyourdata
+
+#### `twitter_scripts`
+- `tweets_per_hashtag.py`: starting from the file twitter_analytics > tweets_johd.csv, looks for the different hashtags and separates the tweets into different files, one for each hashtag. It prints the output files contained in the folder tweets_by_hashtag.
+- `welchs_test.py`: runs two Welch's t-tests on the data contained in metrics_by_hashtag. The first one is run on the papers that appeared in #showmeyourdata (johd_show.csv) vs. those that did not (johd_not_show.csv). The second test is run on the papers that appeared in #johdpapers (johd_tweeted.csv) vs. those that did not (johd_not_tweeted.csv). 
+
+#### `welchs_results`
+Contains results of the Welch's t-test, containing:
+- `variable1`: first variable
+- `variable2`: second variable
+- `mean difference`: difference between the means of the two dataframes
+- `t-test`: value issued from the Welch's test
+- `p-value`: p-value
+- `Significative?`: 'Significative' (p <= 0.05), 'Not significative (p > 0.07)
 
 # NOTES
 - In `datasets_datapapers-links-rdj.csv`:
