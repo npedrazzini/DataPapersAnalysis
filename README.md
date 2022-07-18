@@ -42,6 +42,26 @@ ROOT
 │  └─ zenodo_api
 │     └─ zenodo.ipynb
 └─ zenodo_dimensions_all_humss
+└─ twitter_analysis
+│  ├─ metrics_by_hashtag
+│  │  ├─ johd_not_show.csv
+│  │  ├─ johd_not_tweeted.csv
+│  │  ├─ johd_show.csv
+│  │  ├─ johd_show.csv
+│  │  ├─ johd_tweeted.csv
+│  ├─ tweets_by_hashtag
+│  │  ├─ #johdagenda.csv
+│  │  ├─ #johdnews.csv
+│  │  └─ #johdpapers.csv
+│  │  └─ #johdsuggestions.csv
+│  │  └─ #showmeyourdata.csv
+│  ├─ twitter_scripts
+│  │  ├─ tweets_per_hashtag.py
+│  │  ├─ welchs_test.py
+│  └─ welchs_analysis
+│     └─ welchs_results.csv
+│  ├─ tweets_johd.csv
+
 ```
 
 ## Pipeline summary
