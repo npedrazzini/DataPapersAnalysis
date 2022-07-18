@@ -2,3 +2,5 @@ usefulscripts-DONTGIT/
 .vscode/
 .ipynb_checkpoints
 TODO
+figures/
+.DS_Store

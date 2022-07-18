@@ -9,7 +9,7 @@ from datetime import datetime
 
 data_collection_date = '2022-06-04' # change to date of last export
 
-df = pd.read_csv('./zenodo_dimensions_all_humss/dimensions_humss_research.csv')
+df = pd.read_csv('./dimensions_humss_research.csv')
 
 # Drop any duplicate entry
 df = df.drop_duplicates('Publication ID', keep='last')
@@ -68,8 +68,8 @@ df  = df.loc[(df['altmetric'] <= outlier_max_altmetric) \
 
 # Replace downloads and views with time-normalised data
 # Skip this cell if you want to work with total counts
-df['tot_citations'] = df['tot_citations']/df['days_since_publication']
-df['altmetric'] = df['altmetric']/df['days_since_publication']
+# df['tot_citations'] = df['tot_citations']/df['days_since_publication']
+# df['altmetric'] = df['altmetric']/df['days_since_publication']
 
 print(df['date_of_publication'])
 # Create dataframe with daily averages and remove outliers
@@ -121,6 +121,56 @@ y = np.array(df_means_period['monthly_mean_citations'])
 plt.scatter(x,y,label='Citations')
 plt.legend()
 plt.xlabel('Years')
+plt.ylabel('Age-normalised counts')
 plt.grid(axis='y', alpha=0.75)
-plt.title('All humanities research paper in Dimensions (UK/US 2015-2022)')
+# plt.savefig("./outputs/figures/figureB12-dev-cit-alt-dims.jpeg",dpi=300)
+plt.show()
+
+
+
+
+df = df[df['tot_citations'].notna()]
+df3 = list(df['tot_citations'])
+
+df = df[df['altmetric'].notna()]
+df4 = list(df['altmetric'])
+
+
+bp = plt.boxplot([df3,df4], showmeans=True)    
+medians = [round(item.get_ydata()[0], 1) for item in bp['medians']]
+means = [round(item.get_ydata()[0], 1) for item in bp['means']]
+minimums = [round(item.get_ydata()[0], 1) for item in bp['caps']][::2]
+maximums = [round(item.get_ydata()[0], 1) for item in bp['caps']][1::2]
+q1 = [round(min(item.get_ydata()), 1) for item in bp['boxes']]
+q3 = [round(max(item.get_ydata()), 1) for item in bp['boxes']]
+fliers = [item.get_ydata() for item in bp['fliers']]
+lower_outliers = []
+upper_outliers = []
+for i in range(len(fliers)):
+    lower_outliers_by_box = []
+    upper_outliers_by_box = []
+    for outlier in fliers[i]:
+        if outlier < q1[i]:
+            lower_outliers_by_box.append(round(outlier, 1))
+        else:
+            upper_outliers_by_box.append(round(outlier, 1))
+    lower_outliers.append(lower_outliers_by_box)
+    upper_outliers.append(upper_outliers_by_box)    
+    
+# New code
+stats = [medians, means, minimums, maximums, q1, q3, lower_outliers, upper_outliers]
+stats_names = ['Median', 'Mean', 'Minimum', 'Maximum', 'Q1', 'Q3', 'Lower outliers', 'Upper outliers']
+categories = ['cit', 'alt'] # to be updated
+for i in range(len(categories)):
+    print(f'\033[1m{categories[i]}\033[0m')
+    for j in range(len(stats)):
+        print(f'{stats_names[j]}: {stats[j][i]}')
+    print('\n')
+
+plt.xticks([1,2], ['Citations','Altmetric'])
+plt.ylabel('Raw counts')
+plt.grid(axis='y', alpha=1)
+# plt.ylim(0,min(upper_outliers))
+plt.savefig("./outputs/figures/figureB11-cit-alt-dims.jpeg",dpi=300)
+
 plt.show()

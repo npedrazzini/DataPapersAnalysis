@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-df = pd.read_csv('./zenodo_dimensions_all_humss/zenodo_humss_datasets.csv')
+df = pd.read_csv('./zenodo_humss_datasets.csv')
 
 # IQR-interquartile range to detect outliers
 #IQR --> points which fall more than 1.5 times the interquartile range above the third quartile or below the first quartile.
@@ -34,9 +34,9 @@ df  = df.loc[(df['views'] <= outlier_max_views) \
     & (df['views'] >= outlier_min_views)] 
 
 # Replace downloads and views with time-normalised data
-# Skip this cell if you want to work with total counts
-df['downloads'] = df['downloads']/df['days_since_publication']
-df['views'] = df['views']/df['days_since_publication']
+# # Skip this cell if you want to work with total counts
+# df['downloads'] = df['downloads']/df['days_since_publication']
+# df['views'] = df['views']/df['days_since_publication']
 
 # Create dataframe with daily averages and remove outliers
 days_since_publication = df['days_since_publication'].unique()
@@ -88,6 +88,57 @@ y = np.array(df_means_period['monthly_mean_downloads'])
 plt.scatter(x,y,c='yellow',label='Downloads')
 plt.legend()
 plt.xlabel('Years')
+plt.ylabel('Age-normalised counts')
 plt.grid(axis='y', alpha=0.75)
-plt.title('All humanities datasets in Zenodo (2015-2022)')
+# plt.savefig("./outputs/figures/figureB10-down-zen.jpeg",dpi=300)
+
+plt.show()
+
+
+
+
+df = df[df['downloads'].notna()]
+df3 = list(df['downloads'])
+
+df = df[df['views'].notna()]
+df4 = list(df['views'])
+
+
+bp = plt.boxplot([df3,df4], showmeans=True)    
+medians = [round(item.get_ydata()[0], 1) for item in bp['medians']]
+means = [round(item.get_ydata()[0], 1) for item in bp['means']]
+minimums = [round(item.get_ydata()[0], 1) for item in bp['caps']][::2]
+maximums = [round(item.get_ydata()[0], 1) for item in bp['caps']][1::2]
+q1 = [round(min(item.get_ydata()), 1) for item in bp['boxes']]
+q3 = [round(max(item.get_ydata()), 1) for item in bp['boxes']]
+fliers = [item.get_ydata() for item in bp['fliers']]
+lower_outliers = []
+upper_outliers = []
+for i in range(len(fliers)):
+    lower_outliers_by_box = []
+    upper_outliers_by_box = []
+    for outlier in fliers[i]:
+        if outlier < q1[i]:
+            lower_outliers_by_box.append(round(outlier, 1))
+        else:
+            upper_outliers_by_box.append(round(outlier, 1))
+    lower_outliers.append(lower_outliers_by_box)
+    upper_outliers.append(upper_outliers_by_box)    
+    
+# New code
+stats = [medians, means, minimums, maximums, q1, q3, lower_outliers, upper_outliers]
+stats_names = ['Median', 'Mean', 'Minimum', 'Maximum', 'Q1', 'Q3', 'Lower outliers', 'Upper outliers']
+categories = ['Downloads', 'Views'] # to be updated
+for i in range(len(categories)):
+    print(f'\033[1m{categories[i]}\033[0m')
+    for j in range(len(stats)):
+        print(f'{stats_names[j]}: {stats[j][i]}')
+    print('\n')
+
+plt.xticks([1,2], ['Downloads','Views'])
+plt.ylabel('Raw counts')
+plt.grid(axis='y', alpha=1)
+# plt.ylim(0,min(upper_outliers))
+plt.savefig("./outputs/figures/figureB9-down-views-zen.jpeg",dpi=300)
+
 plt.show()

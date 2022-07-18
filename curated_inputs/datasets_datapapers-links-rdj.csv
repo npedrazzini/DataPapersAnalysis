@@ -1,45 +1,46 @@
-DOI,repourl,reponame,pub-date
-10.1163/24523666-01000004,https://doi.org/10.17026/dans-x5d-dx3f,DANS,2011-02-14
-10.1163/24523666-01000003,http://dx.doi.org/10.17026/dans-xfd-n8y5,DANS,2013-09-02
-10.1163/24523666-01000002,https://doi.org/10.17026/dans-zcd-mebh,DANS,2009-11-10
-10.1163/24523666-01000001,https://doi.org/10.17026/dans-xcx-zmag,DANS,2014-09-30
-10.1163/24523666-01000005,https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:64875,DANS,2016-06-01
-10.1163/24523666-01000007,http://dx.doi.org/10.5255/UKDA-SN-8117-1,UK Data Service,2017-03-06
-10.1163/24523666-01000006,http://dx.doi.org/10.5255/UKDA-SN-6614-7,UK Data Service,2015-11-18
-10.1163/24523666-01000008,http://dx.doi.org/10.17026/dans-xcn-hy2q,DANS,2017-01-20
-10.1163/24523666-01000013,https://www.doi.org/10.6084/m9.figshare.6187256,Figshare,2018-05-02
-10.1163/24523666-01000009,https://doi.org/10.17026/dans-xt9-fzkw,DANS,2017-11-17
-10.1163/24523666-01000011,http://doi.org/10.5281/zenodo.1302798,Zenodo,2018-07-01
-10.1163/24523666-01000010,http://doi.org/10.17026/dans-xpk-wj5w,DANS,2016-06-23
-10.1163/24523666-01000012,http://dataverse.nl/dataverse/musicscapes,Dataverse,2018-08-30
-10.1163/24523666-00401004,http://doi.org/10.17026/dans-z9h-nrev,DANS,2016-11-21
-10.1163/24523666-00401003,http://doi.org/10.17026/dans-zuq-ewst,DANS,2019-11-09
-10.1163/24523666-00401002,http://doi.org/10.7802/1594,Gesis,2018-02-13
-10.1163/24523666-00401001,https://discover.ukdataservice.ac.uk/series/?sn=2000040,UK Data Service,NA
-10.1163/24523666-00401005,https://doi.org/10.5281/zenodo.3056000,Zenodo,2019-05-20
-10.1163/24523666-00401006,https://doi.org/10.17026/dans-zsu-xavf,DANS,2018-02-01
-10.1163/24523666-00401007,https://www.osf.io/zyaqn/files,OSF,2017-08-16
-10.1163/24523666-00401008,http://doi.org/10.5255/UKDA-SN-6226-6,UK Data Service,NA
-10.1163/24523666-bja10007,http://doi.org/10.24416/UU01-QG9Q8B,Other,2019-07-12
-10.1163/24523666-00501002,http://doi.org/10.17605/OSF.IO/QTU2J,OSF,2018-07-22
-10.1163/24523666-bja10003,http://doi.org/10.17026/dans-26t-hhv7,DANS,2018-12-04
-10.1163/24523666-bja10011,http://doi.org/10.25828/gtr1-8r20,DataFirst,2020-09-11
-10.1163/24523666-00502010,https://www.doi.org/10.21943/auas.7381127,Figshare,2019-12-18
-10.1163/24523666-00502009,https://www.doi.org/10.17026/dans-zed-2hg2,DANS,2019-08-08
-10.1163/24523666-00502008,https://www.doi.org/10.17026/dans-z9y-c5g6,DANS,2019-01-15
-10.1163/24523666-00502007,https://www.doi.org/10.17026/dans-zcy-g3pt,DANS,2018-11-14
-10.1163/24523666-00502006,https://www.doi.org/10.17026/dans-2z9-m5n9,DANS,2018-11-14
-10.1163/24523666-00502005,https://www.doi.org/10.17026/dans-znv-3c2j,DANS,2019-07-31
-10.1163/24523666-bja10013,https://www.doi.org/10.17026/dans-x4q-jv9z,DANS,2019-05-15
-10.1163/24523666-00502003,https://www.doi.org/10.17026/dans-z37-2db7,DANS,2019-02-24
-10.1163/24523666-bja10002,https://figshare.com/projects/History_and_Contents_of_the_Dutch_Theatre_Production_Database/56726,Figshare,2019-02-24
-10.1163/24523666-bja10008,,,NA
-10.1163/24523666-06010001,https://www.doi.org/10.7802/2030,Gesis,2020-06-29
-10.1163/24523666-06010002,https://www.doi.org/10.25397/eur.14049842,Figshare,2021-06-10
-10.1163/24523666-06010003,https://www.doi.org/10.17026/dans-xzy-u62q,DANS,2021-03-31
-10.1163/24523666-bja10018,https://www.doi.org/10.17026/dans-zs3-cf4m,DANS,2018-08-20
-10.1163/24523666-bja10019,https://www.doi.org/10.17026/dans-zhg-gmwg,DANS,2020-10-23
-10.1163/24523666-bja10017,https://www.doi.org/10.5281/zenodo.4479068,Zenodo,2021-01-29
-10.1163/24523666-06010004,https://www.doi.org/10.21251/59fd3210-83fe-4d1c-8d18-f2cd1168ccd6,Other,2020-11-16
-10.1163/24523666-bja10009,https://www.doi.org/10.15454/OP51SJ,Other,2021-03-31
-10.1163/24523666-07010001,https://www.doi.org/10.17605/OSF.IO/V9CT6,OSF,2020-11-23
+DOI,reponame,repourl,pub-date
+10.1163/24523666-01000004,DANS,https://doi.org/10.17026/dans-x5d-dx3f,2011-02-14
+10.1163/24523666-01000003,DANS,http://dx.doi.org/10.17026/dans-xfd-n8y5,2013-09-02
+10.1163/24523666-01000002,DANS,https://doi.org/10.17026/dans-zcd-mebh,2009-11-10
+10.1163/24523666-01000001,DANS,https://doi.org/10.17026/dans-xcx-zmag,2014-09-30
+10.1163/24523666-01000005,DANS,https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:64875,2016-06-01
+10.1163/24523666-01000007,UK Data Service,http://dx.doi.org/10.5255/UKDA-SN-8117-1,2017-03-06
+10.1163/24523666-01000006,UK Data Service,http://dx.doi.org/10.5255/UKDA-SN-6614-7,2015-11-18
+10.1163/24523666-01000008,DANS,http://dx.doi.org/10.17026/dans-xcn-hy2q,2017-01-20
+10.1163/24523666-01000013,Figshare,https://www.doi.org/10.6084/m9.figshare.6187256,2018-05-02
+10.1163/24523666-01000009,DANS,https://doi.org/10.17026/dans-xt9-fzkw,2017-11-17
+10.1163/24523666-01000011,Zenodo,http://doi.org/10.5281/zenodo.1302798,2018-07-01
+10.1163/24523666-01000010,DANS,http://doi.org/10.17026/dans-xpk-wj5w,2016-06-23
+10.1163/24523666-01000012,Dataverse,https://dataverse.nl/dataset.xhtml?persistentId=doi:10.34894/UIJSK8,2018-08-30
+10.1163/24523666-00401004,DANS,http://doi.org/10.17026/dans-z9h-nrev,2016-11-21
+10.1163/24523666-00401003,DANS,http://doi.org/10.17026/dans-zuq-ewst,2019-11-09
+10.1163/24523666-00401002,Gesis,http://doi.org/10.7802/1594,2018-02-13
+10.1163/24523666-00401001,UK Data Service,https://discover.ukdataservice.ac.uk/series/?sn=2000040,2019-04-18
+10.1163/24523666-00401005,Zenodo,https://doi.org/10.5281/zenodo.3056000,2019-05-20
+10.1163/24523666-00401006,DANS,https://doi.org/10.17026/dans-zsu-xavf,2018-02-01
+10.1163/24523666-00401007,OSF,https://www.osf.io/zyaqn/files,2017-08-16
+10.1163/24523666-00401008,UK Data Service,http://doi.org/10.5255/UKDA-SN-6226-6,2019-04-08
+10.1163/24523666-bja10007,Other,http://doi.org/10.24416/UU01-QG9Q8B,2019-07-12
+10.1163/24523666-00501002,OSF,http://doi.org/10.17605/OSF.IO/QTU2J,2018-07-22
+10.1163/24523666-bja10003,DANS,http://doi.org/10.17026/dans-26t-hhv7,2018-12-04
+10.1163/24523666-bja10011,DataFirst,http://doi.org/10.25828/gtr1-8r20,2020-09-11
+10.1163/24523666-00502010,Figshare,https://www.doi.org/10.21943/auas.7381127,2019-12-18
+10.1163/24523666-00502009,DANS,https://www.doi.org/10.17026/dans-zed-2hg2,2019-08-08
+10.1163/24523666-00502008,DANS,https://www.doi.org/10.17026/dans-z9y-c5g6,2019-01-15
+10.1163/24523666-00502007,DANS,https://www.doi.org/10.17026/dans-zcy-g3pt,2018-11-14
+10.1163/24523666-00502006,DANS,https://www.doi.org/10.17026/dans-2z9-m5n9,2018-11-14
+10.1163/24523666-00502005,DANS,https://www.doi.org/10.17026/dans-znv-3c2j,2019-07-31
+10.1163/24523666-bja10013,DANS,https://www.doi.org/10.17026/dans-x4q-jv9z,2019-05-15
+10.1163/24523666-00502003,DANS,https://www.doi.org/10.17026/dans-z37-2db7,2019-02-24
+10.1163/24523666-bja10002,Figshare,https://doi.org/10.6084/m9.figshare.7335875.v1,2019-02-24
+10.1163/24523666-06010001,Gesis,https://www.doi.org/10.7802/2030,2020-06-29
+10.1163/24523666-06010002,Figshare,https://www.doi.org/10.25397/eur.14049842,2021-06-10
+10.1163/24523666-06010003,DANS,https://www.doi.org/10.17026/dans-xzy-u62q,2021-03-31
+10.1163/24523666-bja10018,DANS,https://www.doi.org/10.17026/dans-zs3-cf4m,2018-08-20
+10.1163/24523666-bja10019,DANS,https://www.doi.org/10.17026/dans-zhg-gmwg,2020-10-23
+10.1163/24523666-bja10017,Zenodo,https://www.doi.org/10.5281/zenodo.4479068,2021-01-29
+10.1163/24523666-06010004,Other,https://www.doi.org/10.21251/59fd3210-83fe-4d1c-8d18-f2cd1168ccd6,2020-11-16
+10.1163/24523666-bja10009,Other,https://www.doi.org/10.15454/OP51SJ,2021-03-31
+10.1163/24523666-07010001,OSF,https://www.doi.org/10.17605/OSF.IO/V9CT6,2020-11-23
+10.1163/24523666-bja10022,UK Data Service,https://www.doi.org/10.5255/UKDA-SN-854673,2022-06-22
+10.1163/24523666-bja10023,DANS,https://www.doi.org/10.17026/dans-2ca-hxmd,2021-05-11

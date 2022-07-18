@@ -36,31 +36,32 @@ ROOT
 │  │  ├─ merge_rdj_dimensions.py
 │  │  └─ merge_research_papers_dimensions.py
 │  ├─ scraper
-│  │  ├─ datasets_scraper.py
+│  │  ├─ datasets_scraper-johd.py
+│  │  ├─ datasets_scraper-rdj.py
 │  │  ├─ johd_scraper.py
 │  │  └─ rdj_scraper.py
 │  └─ zenodo_api
 │     └─ zenodo.ipynb
-└─ zenodo_dimensions_all_humss
+├─ zenodo_dimensions_all_humss
 └─ twitter_analysis
-│  ├─ metrics_by_hashtag
-│  │  ├─ johd_not_show.csv
-│  │  ├─ johd_not_tweeted.csv
-│  │  ├─ johd_show.csv
-│  │  ├─ johd_show.csv
-│  │  ├─ johd_tweeted.csv
-│  ├─ tweets_by_hashtag
-│  │  ├─ #johdagenda.csv
-│  │  ├─ #johdnews.csv
-│  │  └─ #johdpapers.csv
-│  │  └─ #johdsuggestions.csv
-│  │  └─ #showmeyourdata.csv
-│  ├─ twitter_scripts
-│  │  ├─ tweets_per_hashtag.py
-│  │  ├─ welchs_test.py
-│  └─ welchs_analysis
-│     └─ welchs_results.csv
-│  ├─ tweets_johd.csv
+   ├─ metrics_by_hashtag
+   │  ├─ johd_not_show.csv
+   │  ├─ johd_not_tweeted.csv
+   │  ├─ johd_show.csv
+   │  ├─ johd_show.csv
+   │  └─ johd_tweeted.csv
+   ├─ tweets_by_hashtag
+   │  ├─ #johdagenda.csv
+   │  ├─ #johdnews.csv
+   │  ├─ #johdpapers.csv
+   │  ├─ #johdsuggestions.csv
+   │  └─ #showmeyourdata.csv
+   ├─ twitter_scripts
+   │  ├─ tweets_per_hashtag.py
+   │  └─ welchs_test.py
+   ├─ welchs_analysis
+   │  └─ welchs_results.csv
+   └─ tweets_johd.csv
 
 ```
 
@@ -75,13 +76,15 @@ ROOT
     - all publications by JOHD and RDJ (one dataset). Put the export in dimensions_exports/johd_rdj and rename the file to YYYY-MM-DD-dimensions_export.csv (where YYYY-MM-DD is the date of the export).
     - all DOIs of research papers associated with data papers as listed in `curated_inputs/research_datapapers-links-johd.csv` and `curated_inputs/research_datapapers-links-rdj.csv`.
 3. Run `python scripts/scraper/johd_scraper.py`. This will output `outputs/scraper_outputs/johd/YYYY-MM-DD-scraper-datapapers-johd` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
-4. Run `python scripts/scraper/dataset_scraper.py`. This will output `outputs/scraper_outputs/johd/YYYY-MM-DD-scraper-datasets-johd.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
+4. Run `python scripts/scraper/datasets_scraper-rdj.py` and `python scripts/scraper/datasets_scraper-johd.py`. This will output `outputs/scraper_outputs/rdj/YYYY-MM-DD-scraper-datasets-rdj.csv` and `outputs/scraper_outputs/johd/YYYY-MM-DD-scraper-datasets-johd.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
 4. Run `python scripts/scraper/rdj_scraper.py`. This will output `outputs/scraper_outputs/rdj/YYYY-MM-DD-scraper-datasets-rdj.csv` (YYYY-MM-DD will automatically be changed with the date in which you run this script).
 5. Make a copy of `outputs/scraper_outputs/johd/YYYY-MM-DD-scraper-datasets-johd.csv` and put it into `outputs/final_outputs/johd/`. Rename it to `YYYY-MM-DD-final-datasets-johd.csv`.
 6. Manually add the metrics for the datasets which we can't crawl but can retrieve manually (currently 3):
     - 10.5334/johd.4
     - 10.5334/johd.15
     - 10.5334/johd.33
+    - 10.1163/24523666-00502010
+    - 10.5334/johd.69
 7. Run `python scripts/postprocess/merge_johd_dimensions.py`. This will output `outputs/final_outputs/johd/YYYY-MM-DD-final-datapapers-johd.csv`.
 9. Run `python scripts/postprocess/merge_rdj_dimensions.py`. This will output `outputs/final_outputs/research_papers/YYYY-MM-DD-final-datapapers-rdj.csv`.
 8. Run `python scripts/postprocess/merge_research_papers_dimensions.py`. This will output `outputs/final_outputs/research_papers/YYYY-MM-DD-final-research_papers-johd.csv` and `outputs/final_outputs/research_papers/YYYY-MM-DD-final-research_papers-rdj.csv`.

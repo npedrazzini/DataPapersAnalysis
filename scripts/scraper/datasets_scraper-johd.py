@@ -13,11 +13,12 @@ headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleW
 with open(datasets) as incsv, open('./outputs/scraper_outputs/johd/{}-scraper-datasets-johd.csv'.format(todaysdate),'w') as csv_crawler:
     datasetlist = csv.DictReader(incsv,delimiter=',')
     csv_output = csv.writer(csv_crawler)
-    csv_output.writerow(['DOI','reponame','repourl','views','unique-views','downloads','unique-downloads'])
+    csv_output.writerow(['DOI','reponame','repourl','views','unique-views','downloads','unique-downloads','date'])
     for line in datasetlist:
         doi = line['DOI']
         reponame = line['reponame']
         repourl = line['repourl']
+        date = line['pub-date']
         if reponame == 'Zenodo':
             page = requests.get(repourl,headers=headers)
             soup = BeautifulSoup(page.content, "html.parser")
@@ -41,23 +42,31 @@ with open(datasets) as incsv, open('./outputs/scraper_outputs/johd/{}-scraper-da
                     uniquedown = (result.parent.find_all('td'))[1].text
                     uniquedown = ''.join(uniquedown.split(','))
                     print(uniquedown)
-            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
+            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown,date])
         elif reponame == 'Figshare':
-            repoid = repourl.split('/')[4].split('.')[2]
-            print(repoid)
-            viewspage = requests.get('https://stats.figshare.com/total/views/article/{}'.format(repoid),headers=headers)
-            soup = BeautifulSoup(viewspage.content, "html.parser")
-            totalviews = soup.text.split(':')[1].strip().split('}')[0]
-            totalviews = ''.join(totalviews.split(','))
-            print(totalviews)
-            uniqueviews = 'NA'
-            downpage = requests.get('https://stats.figshare.com/total/downloads/article/{}'.format(repoid),headers=headers)
-            soup = BeautifulSoup(downpage.content, "html.parser")
-            totaldownloads = soup.text.split(':')[1].strip().split('}')[0]
-            totaldownloads = ''.join(totaldownloads.split(','))
-            print(totaldownloads)
-            uniquedown = 'NA'
-            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
+            try:
+                print(repourl)
+                repoid = repourl.split('/')[4].split('.')[2]
+                print(repoid)
+                viewspage = requests.get('https://stats.figshare.com/total/views/article/{}'.format(repoid),headers=headers)
+                soup = BeautifulSoup(viewspage.content, "html.parser")
+                totalviews = soup.text.split(':')[1].strip().split('}')[0]
+                totalviews = ''.join(totalviews.split(','))
+                print(totalviews)
+                uniqueviews = 'NA'
+                downpage = requests.get('https://stats.figshare.com/total/downloads/article/{}'.format(repoid),headers=headers)
+                soup = BeautifulSoup(downpage.content, "html.parser")
+                totaldownloads = soup.text.split(':')[1].strip().split('}')[0]
+                totaldownloads = ''.join(totaldownloads.split(','))
+                print(totaldownloads)
+                uniquedown = 'NA'
+                csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown,date])
+            except IndexError:
+                totalviews = 'NA'
+                uniqueviews = 'NA'
+                totaldownloads = 'NA'
+                uniquedown = 'NA'
+                csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown,date])
         elif reponame == 'Figshare-Inst':
             repoid = repourl.split('/')[6]
             print(repoid)
@@ -74,7 +83,7 @@ with open(datasets) as incsv, open('./outputs/scraper_outputs/johd/{}-scraper-da
             totaldownloads = ''.join(totaldownloads.split(','))
             print(totaldownloads)
             uniquedown = 'NA'
-            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
+            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown,date])
         elif reponame == 'DataShare':
             page = requests.get(repourl + '/statistics',headers=headers)
             soup = BeautifulSoup(page.content, "html.parser")
@@ -87,7 +96,7 @@ with open(datasets) as incsv, open('./outputs/scraper_outputs/johd/{}-scraper-da
             uniqueviews = 'NA'
             totaldownloads = 'NA'
             uniquedown = 'NA'
-            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
+            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown,date])
         elif reponame == 'Dataverse':
             page = requests.get(repourl,headers=headers)
             soup = BeautifulSoup(page.content, "html.parser")
@@ -112,10 +121,10 @@ with open(datasets) as incsv, open('./outputs/scraper_outputs/johd/{}-scraper-da
             print(totaldownloads)
             uniqueviews = 'NA'
             uniquedown = 'NA'
-            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
+            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown,date])
         else:
             totalviews = 'NA'
             uniqueviews = 'NA'
             totaldownloads = 'NA'
             uniquedown = 'NA'
-            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown])
+            csv_output.writerow([doi,reponame,repourl,totalviews,uniqueviews,totaldownloads,uniquedown,date])
