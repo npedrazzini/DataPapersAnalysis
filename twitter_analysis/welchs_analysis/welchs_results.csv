@@ -1,0 +1,7 @@
+variable1,variable2,mean difference,t-test,p-value,Significative?
+downloads_show,downloads_not_show,0.0471957284472681,2.0208247298365523,0.0478650347494159,Significative
+views_show,views_not_show,0.3927446345602264,2.2142642576475864,0.0309568780196317,Significative
+tot_citations_show,tot_citations_not_show,0.0002159196532469,0.201171275463255,0.8412040161956658,Not significative
+downloads_tweeted,downloads_not_tweeted,-0.0070885080231097,-0.2288949379790664,0.8204204075672116,Not significative
+views_tweeted,views_not_tweeted,-0.1315908689906427,-0.5423052243272963,0.5915652245892224,Not significative
+tot_citations_tweeted,tot_citations_not_tweeted,-0.0009125325060435,-0.6620237682476807,0.5131447064986243,Not significative
