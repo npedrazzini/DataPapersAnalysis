@@ -43,10 +43,10 @@ ROOT
 ## Pipeline summary
 > NB: Every step in the pipeline needs to be done on the same day, else you may run into inconsistencies.
 1. Update the curated inputs in this repository:
-    - `datasets_datapapers-links-johd.csv`: add the latest data papers by JOHD and associated datasets (from [here](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) or manually by checking the website).
-    - `datasets_datapapers-links-rdj.csv`:  add the latest data papers by RDJ and associated datasets (from [here](https://docs.google.com/spreadsheets/d/11MziEnCBh-Wz_GzBHi1PcM4p947yE9Nn/edit#gid=1230857751) or manually by checking the website).
-    - `research_datapapers-links-johd.csv`: add any missing research paper associated to JOHD data papers (from [here](https://docs.google.com/spreadsheets/d/1e0FiSv6VaOabt5rBFDyytj2A8tDS48ZZ5OLgxJ1dQ5E/edit#gid=0)).
-    - `research_datapapers-links-rdj.csv`: add any missing research paper associated to RDJ data papers (from [here](https://docs.google.com/spreadsheets/d/1e0FiSv6VaOabt5rBFDyytj2A8tDS48ZZ5OLgxJ1dQ5E/edit#gid=0)).
+    - `datasets_datapapers-links-johd.csv`: add the latest data papers by JOHD and associated datasets.
+    - `datasets_datapapers-links-rdj.csv`:  add the latest data papers by RDJ and associated datasets.
+    - `research_datapapers-links-johd.csv`: add any missing research paper associated to JOHD data papers.
+    - `research_datapapers-links-rdj.csv`: add any missing research paper associated to RDJ data papers.
 2. Export the following data from Dimensions:
     - all publications by JOHD and RDJ (one dataset). Put the export in dimensions_exports/johd_rdj and rename the file to YYYY-MM-DD-dimensions_export.csv (where YYYY-MM-DD is the date of the export).
     - all DOIs of research papers associated with data papers as listed in `curated_inputs/research_datapapers-links-johd.csv` and `curated_inputs/research_datapapers-links-rdj.csv`.
