@@ -1,5 +1,7 @@
 # JOHD Data Analysis: scripts and data
 
+[![DOI](https://zenodo.org/badge/478089117.svg)](https://zenodo.org/badge/latestdoi/478089117)
+
 ## Project structure
 ```
 ROOT
